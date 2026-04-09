@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.TransactionsController"
+      spacing="12" styleClass="tab-content">
+
+    <padding><Insets top="14" right="16" bottom="10" left="16"/></padding>
+
+    <Label text="Transactions — Facade + Observer Patterns" styleClass="section-title"/>
+    <Label text="Borrow/Return use Facade (one call). 'Watch Book' registers an Observer — return it to see the notification fire automatically."
+           styleClass="section-hint" wrapText="true"/>
+
+    <!-- ── Issue + Return + Watch (side by side) ──────────────────── -->
+    <HBox spacing="16">
+
+        <!-- Issue Book -->
+        <VBox styleClass="action-card" spacing="8" HBox.hgrow="ALWAYS">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label text="Issue Book" styleClass="card-title"/>
+            <Label text="Member:"/>
+            <ComboBox fx:id="issueMemberCombo" prefWidth="220"/>
+            <Label text="Book (available only):"/>
+            <ComboBox fx:id="issueBookCombo" prefWidth="220"/>
+            <Button text="Issue Book" onAction="#handleIssueBook"
+                    styleClass="btn,btn-primary" prefWidth="220"/>
+            <Label fx:id="issueStatusLabel" styleClass="label-success" wrapText="true"/>
+        </VBox>
+
+        <!-- Return Book -->
+        <VBox styleClass="action-card" spacing="8" HBox.hgrow="ALWAYS">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label text="Return Book" styleClass="card-title"/>
+            <Label text="Active Transaction:"/>
+            <ComboBox fx:id="returnTxnCombo" prefWidth="220"/>
+            <Region prefHeight="28"/>
+            <Button text="Process Return" onAction="#handleReturnBook"
+                    styleClass="btn,btn-success" prefWidth="220"/>
+            <Label fx:id="returnStatusLabel" styleClass="label-success" wrapText="true"/>
+        </VBox>
+
+        <!-- Observer Demo -->
+        <VBox styleClass="action-card-observer" spacing="8" HBox.hgrow="ALWAYS">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <Label text="Watch Book (Observer Demo)" styleClass="card-title-observer"/>
+            <Label text="Register a member to be notified when a book is returned."
+                   wrapText="true" styleClass="section-hint"/>
+            <Label text="Member:"/>
+            <ComboBox fx:id="watchMemberCombo" prefWidth="220"/>
+            <Label text="Book to Watch:"/>
+            <ComboBox fx:id="watchBookCombo" prefWidth="220"/>
+            <Button text="Watch This Book" onAction="#handleWatchBook"
+                    styleClass="btn,btn-info" prefWidth="220"/>
+            <Label fx:id="watchStatusLabel" styleClass="label-info" wrapText="true"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ── Transactions Table ─────────────────────────────────────── -->
+    <Label text="All Transactions" styleClass="section-subtitle"/>
+    <TableView fx:id="txnTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colTxnId"    text="Txn ID"     prefWidth="70"/>
+            <TableColumn fx:id="colBookId"   text="Book ID"    prefWidth="80"/>
+            <TableColumn fx:id="colMemberId" text="Member ID"  prefWidth="90"/>
+            <TableColumn fx:id="colIssueDate" text="Issued"    prefWidth="110"/>
+            <TableColumn fx:id="colDueDate"   text="Due"       prefWidth="110"/>
+            <TableColumn fx:id="colFine"      text="Fine (₹)"  prefWidth="90"/>
+        </columns>
+        <placeholder><Label text="No transactions yet."/></placeholder>
+    </TableView>
+</VBox>

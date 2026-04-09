@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.MembersController"
+      spacing="12" styleClass="tab-content">
+
+    <padding><Insets top="14" right="16" bottom="10" left="16"/></padding>
+
+    <Label text="Member Management — Facade Pattern" styleClass="section-title"/>
+    <Label text="facade.registerMember() hides ID generation, object creation, and storage behind one call."
+           styleClass="section-hint" wrapText="true"/>
+
+    <!-- ── Register Form ──────────────────────────────────────────── -->
+    <TitledPane text="Register New Member" expanded="true" styleClass="form-pane">
+        <GridPane hgap="10" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="80"/>
+                <ColumnConstraints minWidth="180" hgrow="ALWAYS"/>
+                <ColumnConstraints minWidth="80"/>
+                <ColumnConstraints minWidth="180" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="nameField" promptText="Full name"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="emailField" promptText="email@pes.edu"
+                       GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="phoneField" promptText="10-digit number"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                  GridPane.columnSpan="4">
+                <Button text="Register Member" onAction="#handleRegister"
+                        styleClass="btn,btn-primary"/>
+                <Label fx:id="statusLabel" styleClass="label-success"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <!-- ── Member Table ───────────────────────────────────────────── -->
+    <TableView fx:id="membersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"    text="ID"     prefWidth="70"/>
+            <TableColumn fx:id="colName"  text="Name"   prefWidth="180"/>
+            <TableColumn fx:id="colEmail" text="Email"  prefWidth="200"/>
+            <TableColumn fx:id="colPhone" text="Phone"  prefWidth="130"/>
+            <TableColumn fx:id="colFine"  text="Fine (₹)" prefWidth="100"/>
+        </columns>
+        <placeholder><Label text="No members yet. Register one above."/></placeholder>
+    </TableView>
+
+    <!-- ── Pay Fine ───────────────────────────────────────────────── -->
+    <TitledPane text="Pay Fine" expanded="false" styleClass="form-pane">
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <padding><Insets top="8" right="10" bottom="8" left="10"/></padding>
+            <Label text="Member:"/>
+            <ComboBox fx:id="memberCombo" prefWidth="200"/>
+            <Label fx:id="fineDisplayLabel" styleClass="fine-label"/>
+            <Button text="Pay Fine" onAction="#handlePayFine" styleClass="btn,btn-warning"/>
+        </HBox>
+    </TitledPane>
+</VBox>

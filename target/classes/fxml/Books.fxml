@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.library.controller.BooksController"
+      spacing="12" styleClass="tab-content">
+
+    <padding><Insets top="14" right="16" bottom="10" left="16"/></padding>
+
+    <!-- ── Section title ──────────────────────────────────────────── -->
+    <Label text="Book Management — Factory Method Pattern" styleClass="section-title"/>
+    <Label text="The controller never calls 'new PhysicalBook()' — it passes BookType to the Facade, which delegates to the correct Factory."
+           styleClass="section-hint" wrapText="true"/>
+
+    <!-- ── Add Book Form ──────────────────────────────────────────── -->
+    <TitledPane text="Add New Book" expanded="true" styleClass="form-pane">
+        <GridPane hgap="10" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="100"/>
+                <ColumnConstraints minWidth="180" hgrow="ALWAYS"/>
+                <ColumnConstraints minWidth="100"/>
+                <ColumnConstraints minWidth="180" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="titleField" promptText="Book title"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Author:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <TextField fx:id="authorField" promptText="Author name"
+                       GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="typeCombo" prefWidth="180"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label fx:id="extraLabel" text="Shelf Location:"
+                   GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="extraField" promptText="e.g. A1-S3 or URL"
+                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                  GridPane.columnSpan="4">
+                <Button text="Add Book" onAction="#handleAddBook" styleClass="btn,btn-primary"/>
+                <Label fx:id="statusLabel" styleClass="label-success"/>
+            </HBox>
+        </GridPane>
+    </TitledPane>
+
+    <!-- ── Search ─────────────────────────────────────────────────── -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search by title or author..."
+                   prefWidth="300"/>
+        <Button text="Search" onAction="#handleSearch" styleClass="btn,btn-default"/>
+        <Button text="Clear" onAction="#handleClearSearch" styleClass="btn,btn-default"/>
+    </HBox>
+
+    <!-- ── Table ──────────────────────────────────────────────────── -->
+    <TableView fx:id="booksTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"     text="ID"      prefWidth="60"/>
+            <TableColumn fx:id="colTitle"  text="Title"   prefWidth="200"/>
+            <TableColumn fx:id="colAuthor" text="Author"  prefWidth="150"/>
+            <TableColumn fx:id="colType"   text="Type"    prefWidth="100"/>
+            <TableColumn fx:id="colStatus" text="Status"  prefWidth="100"/>
+            <TableColumn fx:id="colExtra"  text="Extra Info" prefWidth="200"/>
+        </columns>
+        <placeholder><Label text="No books yet. Add one above."/></placeholder>
+    </TableView>
+</VBox>

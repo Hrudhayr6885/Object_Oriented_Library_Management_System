@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.library.controller.MainController"
+            prefWidth="1100" prefHeight="720"
+            styleClass="main-root">
+
+    <!-- ── Top Bar ─────────────────────────────────────────────── -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="20">
+            <padding><Insets top="10" right="20" bottom="10" left="20"/></padding>
+            <Label text="Library Management System" styleClass="top-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" styleClass="top-user"/>
+            <Label fx:id="roleLabel" styleClass="top-role"/>
+        </HBox>
+    </top>
+
+    <!-- ── Center: Tabs ───────────────────────────────────────── -->
+    <center>
+        <VBox>
+            <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                <Tab text="Books" fx:id="booksTab"/>
+                <Tab text="Members" fx:id="membersTab"/>
+                <Tab text="Transactions" fx:id="transactionsTab"/>
+            </TabPane>
+        </VBox>
+    </center>
+
+    <!-- ── Bottom: Pattern Activity Log ──────────────────────── -->
+    <bottom>
+        <VBox styleClass="log-panel" spacing="4">
+            <padding><Insets top="6" right="10" bottom="8" left="10"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Label text="Pattern Activity Log" styleClass="log-title"/>
+                <Label text="(live output from Singleton · Factory · Facade · Observer)"
+                       styleClass="log-subtitle"/>
+            </HBox>
+            <TextArea fx:id="patternLog" editable="false"
+                      prefHeight="150" wrapText="true"
+                      styleClass="log-textarea"/>
+        </VBox>
+    </bottom>
+</BorderPane>
