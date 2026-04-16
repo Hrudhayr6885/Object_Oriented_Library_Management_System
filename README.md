@@ -164,7 +164,7 @@ Docs/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/Object_Oriented_Library_Management_System.git
+   git clone https://github.com/Hrudhayr6885/Object_Oriented_Library_Management_System.git
    cd Object_Oriented_Library_Management_System
    ```
 
@@ -226,7 +226,7 @@ All diagrams are in the [`Docs/`](./Docs/) folder.
 - **UI Framework:** JavaFX 17 + FXML
 - **Styling:** BootstrapFX 0.4.0
 - **Build Tool:** Maven 3
-- **Storage:** In-memory (`ObservableList` via `LibraryManager` Singleton)
+- **Storage:** SQLite
 
 ---
 
