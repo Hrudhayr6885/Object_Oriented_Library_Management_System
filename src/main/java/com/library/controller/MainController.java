@@ -55,6 +55,17 @@ public class MainController {
     public void initUser(String name, String role) {
         userLabel.setText("Welcome, " + name);
         roleLabel.setText("Role: " + role);
+
+        // Members can only browse books — hide librarian/admin-only tabs
+        if ("Member".equals(role)) {
+            membersTab.setDisable(true);
+            transactionsTab.setDisable(true);
+        }
+        // Librarian can manage books and transactions but not member admin
+        else if ("Librarian".equals(role)) {
+            membersTab.setDisable(true);
+        }
+        // Admin gets full access — all tabs enabled
     }
 
     private void loadTabContent(Tab tab, String fxmlPath) {
